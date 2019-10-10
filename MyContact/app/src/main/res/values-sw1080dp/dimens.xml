@@ -1,0 +1,59 @@
+<resources>
+  <dimen name="dp_10dp">
+    26.28dp
+  </dimen>
+  <dimen name="dp_15dp">
+    39.42dp
+  </dimen>
+  <dimen name="dp_250dp">
+    656.93dp
+  </dimen>
+  <dimen name="dp_20dp">
+    52.55dp
+  </dimen>
+  <dimen name="dp_70dp">
+    183.94dp
+  </dimen>
+  <dimen name="dp_100dp">
+    262.77dp
+  </dimen>
+  <dimen name="dp_1dp">
+    2.63dp
+  </dimen>
+  <dimen name="dp_150dp">
+    394.16dp
+  </dimen>
+  <dimen name="dp_5dp">
+    13.14dp
+  </dimen>
+  <dimen name="dp_12dp">
+    31.53dp
+  </dimen>
+  <dimen name="dp_8dp">
+    21.02dp
+  </dimen>
+  <dimen name="dp_25dp">
+    65.69dp
+  </dimen>
+  <dimen name="dp_40dp">
+    105.11dp
+  </dimen>
+  <dimen name="dp_22dp">
+    57.81dp
+  </dimen>
+  <dimen name="dp_18dp">
+    47.3dp
+  </dimen>
+  <dimen name="dp_50dp">
+    131.39dp
+  </dimen>
+  <dimen name="dp_2dp">
+    5.26dp
+  </dimen>
+  <dimen name="dp_355dp">
+    932.85dp
+  </dimen>
+  <dimen name="dp_30dp">
+    78.83dp
+  </dimen>
+</resources>
