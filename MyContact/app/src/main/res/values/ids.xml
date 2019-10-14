@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="de.hdodenhof.circleimageview.CircleImageView" type="id">
+        de.hdodenhof.circleimageview.CircleImageView
+    </item>
+</resources>

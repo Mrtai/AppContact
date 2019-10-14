@@ -19,4 +19,5 @@
         <dimen name="dp_2dp">2dp</dimen>
         <dimen name="dp_355dp">355dp</dimen>
         <dimen name="dp_30dp">30dp</dimen>
+        <dimen name="dp_55dp">55dp</dimen>
 </resources>

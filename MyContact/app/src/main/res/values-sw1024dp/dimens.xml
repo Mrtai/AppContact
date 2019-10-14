@@ -56,4 +56,7 @@
   <dimen name="dp_30dp">
     74.74dp
   </dimen>
+  <dimen name="dp_55dp">
+    137.03dp
+  </dimen>
 </resources>

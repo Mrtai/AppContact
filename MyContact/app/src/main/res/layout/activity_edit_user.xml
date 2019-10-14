@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".EditUserActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorBackground">
+        <Button
+            android:layout_width="@dimen/dp_50dp"
+            android:layout_height="@dimen/dp_55dp"
+            android:layout_gravity="center"
+            android:drawableBottom="@drawable/ic_back"
+            />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit profile"
+            android:textSize="@dimen/dp_20dp"
+            android:textColor="@color/colorPink"
+
+            />
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="@dimen/dp_100dp"
+            android:layout_height="@dimen/dp_100dp"
+            android:layout_centerHorizontal="true"
+            android:elevation="@dimen/dp_1dp"
+            android:src="@drawable/person"
+            android:id="@+id/view1"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_50dp">
+            <Button
+                android:layout_width="@dimen/dp_50dp"
+                android:layout_height="@dimen/dp_50dp"
+                android:background="@drawable/camera"
+                android:layout_marginLeft="@dimen/dp_350dp"
+                ></Button>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/dp_150dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name"
+                android:textColor="@android:color/black"
+                ></TextView>
+
+            <EditText
+                android:layout_width="@dimen/dp_350dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_25dp"
+                android:hint="User name"></EditText>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Phone"
+                android:textColor="@android:color/black"></TextView>
+            <EditText
+                android:layout_width="@dimen/dp_350dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_25dp"
+                android:hint="Phone number"></EditText>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email"
+                android:textColor="@android:color/black"></TextView>
+
+            <EditText
+                android:layout_width="@dimen/dp_350dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_25dp"
+                android:hint="Email adress"></EditText>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Note"
+                android:textColor="@android:color/black"></TextView>
+
+            <EditText
+                android:layout_width="@dimen/dp_350dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_25dp"
+                android:hint="Note"></EditText>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Facebook"
+                android:textColor="@android:color/black"></TextView>
+
+            <EditText
+                android:layout_width="@dimen/dp_350dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_25dp"
+                android:hint="Facebook"
+                android:textColor="@android:color/black"></EditText>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Schedule"
+                android:textColor="@android:color/black"></TextView>
+
+            <EditText
+                android:layout_width="@dimen/dp_350dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_25dp"
+                android:hint="Date/Month/Year"
+                android:drawableRight="@drawable/calendar"></EditText>
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>
