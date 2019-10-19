@@ -12,8 +12,6 @@
         android:orientation="vertical"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="-16dp">
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
         <Button
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -33,12 +31,13 @@
             android:text="Nhii"
             android:textSize="25sp"
             android:textStyle="bold" />
+
         <TextView
-            android:layout_width="193dp"
+            android:layout_width="107dp"
             android:layout_height="43dp"
             android:layout_gravity="center"
             android:drawableLeft="@drawable/whatsapp"
-            android:drawableRight="@drawable/email"s
+            android:drawableRight="@drawable/email"
             android:gravity="center"></TextView>
         <TextView
             android:layout_width="100dp"
