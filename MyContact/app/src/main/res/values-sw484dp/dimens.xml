@@ -59,4 +59,7 @@
   <dimen name="dp_55dp">
     64.77dp
   </dimen>
+  <dimen name="dp_350dp">
+    412.17dp
+  </dimen>
 </resources>

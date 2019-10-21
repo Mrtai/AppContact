@@ -9,6 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <provider
+            android:name=".provider.ContactProvider"
+            android:authorities="com.e.mycontact.provider.ContactProvider"
+            android:enabled="true"
+            android:exported="true"></provider>
+
         <activity android:name=".EditUserActivity" />
         <activity android:name=".UserActivity" />
         <activity android:name=".ProfileActivity" />
