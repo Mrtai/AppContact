@@ -7,75 +7,148 @@
     tools:context=".MessegeActivity">
 <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <Button
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:drawableLeft="@drawable/ic_back" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_50dp"
-        android:text="Tin nhắn"
-        android:gravity="center"
-        android:textSize="@dimen/dp_20dp"
-        android:textStyle="bold"></TextView>
-</LinearLayout>
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorGray">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
+        android:layout_height="wrap_content">
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:drawableLeft="@drawable/ic_back"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="Tin nhắn"
+            android:textSize="@dimen/dp_20dp"
+            android:textStyle="bold"></TextView>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="46dp"
-        tools:layout_editor_absoluteY="-76dp">
-            <ImageView
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_gravity="left"
-                android:layout_marginBottom="@dimen/dp_100dp"
-                android:src="@drawable/girl"
-                android:layout_marginTop="50dp"></ImageView>
-            <ImageView
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:src="@drawable/boy"
-                android:layout_gravity="right">
-            </ImageView>
+        android:layout_height="100dp"
+        android:orientation="horizontal">
         <ImageView
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_gravity="left"
             android:layout_marginBottom="@dimen/dp_100dp"
             android:src="@drawable/girl"></ImageView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:gravity="left"
+            android:text="Hello"
+            android:textSize="10pt"
+            android:layout_marginLeft="10dp"
+            android:textStyle="bold"></TextView>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="right"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:gravity="left"
+            android:text="Oke. Hi!"
+            android:textSize="10pt"
+            android:layout_marginLeft="10dp"
+            android:textStyle="bold"></TextView>
         <ImageView
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:src="@drawable/boy"
-            android:layout_gravity="right">
-        </ImageView>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="bottom"
-            android:layout_gravity="bottom"
-            android:layout_marginTop = "70dp">
-            <Button
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:drawableStart="@drawable/them"></Button>
-            <EditText
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:text="Nhập tin nhắn ...">
-            </EditText>
-            <Button
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:drawableStart="@drawable/gui"></Button>
-        </LinearLayout>
+            android:layout_gravity="right"
+            android:layout_marginBottom="@dimen/dp_100dp"
+            android:src="@drawable/boy"></ImageView>
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="left"
+            android:layout_marginBottom="@dimen/dp_100dp"
+            android:src="@drawable/girl"></ImageView>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:gravity="left"
+            android:text="How are you?"
+            android:textSize="10pt"
+            android:layout_marginLeft="10dp"
+            android:textStyle="bold"></TextView>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="right"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:gravity="left"
+            android:text="i'm fine. And you?"
+            android:textSize="10pt"
+            android:layout_marginLeft="10dp"
+            android:textStyle="bold"></TextView>
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="right"
+            android:layout_marginBottom="@dimen/dp_100dp"
+            android:src="@drawable/boy"></ImageView>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="left"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="right"
+            android:layout_marginBottom="@dimen/dp_100dp"
+            android:src="@drawable/girl"></ImageView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:gravity="left"
+            android:text="I'good!"
+            android:textSize="10pt"
+            android:layout_marginLeft="10dp"
+            android:textStyle="bold"></TextView>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp">
+       <Button
+           android:layout_width="50dp"
+           android:layout_height="50dp"
+           android:drawableLeft="@drawable/them"></Button>
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:textSize="10pt"
+            android:textStyle="italic"
+            android:text="Nhập tin nhắn">
+        </EditText>
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:drawableRight="@drawable/gui"></Button>
+    </LinearLayout>
+</LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
