@@ -14,7 +14,12 @@
             android:authorities="com.e.mycontact.provider.ContactProvider"
             android:enabled="true"
             android:exported="true"></provider>
-
+        <activity android:name=".MessegeActivity">
+        </activity>
+        <activity android:name=".CallActivity">
+        </activity>
+        <activity android:name=".Main_UserActivity">
+        </activity>
         <activity android:name=".EditUserActivity" />
         <activity android:name=".UserActivity" />
         <activity android:name=".ProfileActivity" />

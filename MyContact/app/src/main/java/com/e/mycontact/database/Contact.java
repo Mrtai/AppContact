@@ -9,6 +9,7 @@ public class Contact {
     String facebook;
     String note;
     byte[] image;
+    String schedule;
     String dateofborn;
 
     public String getDateofborn() {
@@ -17,6 +18,14 @@ public class Contact {
 
     public void setDateofborn(String dateofborn) {
         this.dateofborn = dateofborn;
+    }
+
+    public String getSchedule() {
+        return schedule;
+    }
+
+    public void setSchedule(String schedule) {
+        this.schedule = schedule;
     }
 
     public int getId() {
