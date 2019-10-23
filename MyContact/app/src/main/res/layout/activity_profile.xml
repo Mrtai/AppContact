@@ -66,23 +66,36 @@
                             android:layout_gravity="center_horizontal"
                             android:layout_marginTop="@dimen/dp_50dp"
                             android:fontFamily="sans-serif-thin"
-                            android:text="@string/user_name"
+                            android:text="Nhi"
                             android:textColor="@color/colorBlack"
                             android:textSize="@dimen/dp_25dp"
-                            android:textStyle="bold|italic" />
-
-                        <TextView
-                            android:id="@+id/address_user_profile"
+                            android:textStyle="bold" />
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_marginTop="@dimen/dp_10dp"
-                            android:layout_marginBottom="@dimen/dp_20dp"
-                            android:fontFamily="sans-serif-thin"
-                            android:text="@string/user_name"
-                            android:textColor="@color/colorBlue"
-                            android:textSize="@dimen/dp_18dp"
-                            android:textStyle="bold" />
+                            android:layout_gravity="center">
+                        <Button
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:gravity="center"
+                            android:layout_gravity="center"
+                            android:drawableEnd="@drawable/whatsapp"
+                            ></Button>
+                            <Button
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:gravity="center"
+                                android:layout_gravity="center"
+                                android:drawableEnd="@drawable/email"
+                                ></Button>
+                            <Button
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:gravity="center"
+                                android:layout_gravity="center"
+                                android:drawableEnd="@drawable/zalo"
+                                ></Button>
+                        </LinearLayout>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -301,92 +314,11 @@
                             </LinearLayout>
                         </LinearLayout>
                     </LinearLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dp_15dp"
-                        android:fontFamily="sans-serif-thin"
-                        android:text="@string/support"
-                        android:textColor="@color/colorBlack"
-                        android:textSize="@dimen/dp_20dp" />
-
-
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dp_25dp"
                         android:orientation="horizontal">
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <Button
-                                android:id="@+id/edit_user_profile"
-                                android:layout_width="@dimen/dp_40dp"
-                                android:layout_height="@dimen/dp_40dp"
-                                android:background="@drawable/ic_edit" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/dp_5dp"
-                                android:fontFamily="sans-serif-thin"
-                                android:text="@string/title_edit_user_profile_btn"
-                                android:textColor="@color/colorBlack"
-                                android:textStyle="bold" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <Button
-                                android:id="@+id/support_user_profile"
-                                android:layout_width="@dimen/dp_40dp"
-                                android:layout_height="@dimen/dp_40dp"
-                                android:background="@drawable/ic_support" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/dp_5dp"
-                                android:fontFamily="sans-serif-thin"
-                                android:text="@string/title_support_user_profile_btn"
-                                android:textColor="@color/colorBlack"
-                                android:textStyle="bold" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <Button
-                                android:id="@+id/feedback_user_profile"
-                                android:layout_width="@dimen/dp_40dp"
-                                android:layout_height="@dimen/dp_40dp"
-                                android:background="@drawable/ic_feedback" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/dp_5dp"
-                                android:fontFamily="sans-serif-thin"
-                                android:text="@string/title_feedback_user_profile_btn"
-                                android:textColor="@color/colorBlack"
-                                android:textStyle="bold" />
-                        </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>

@@ -33,18 +33,18 @@
         android:gravity="center">
         <Button
             android:layout_width="100dp"
-            android:layout_height="70dp"
+            android:layout_height="100dp"
             android:drawableTop="@drawable/muted"
             android:text="Tắt âm">
         </Button>
         <Button
             android:layout_width="100dp"
-            android:layout_height="70dp"
+            android:layout_height="100dp"
             android:drawableTop="@drawable/dung"
             android:text="Giữ"></Button>
         <Button
             android:layout_width="100dp"
-            android:layout_height="70dp"
+            android:layout_height="100dp"
             android:drawableTop="@drawable/aa"
             android:text="Loa ngoài">
         </Button>
@@ -55,19 +55,19 @@
         android:gravity="center">
         <Button
             android:layout_width="100dp"
-            android:layout_height="70dp"
+            android:layout_height="100dp"
             android:drawableTop="@drawable/icon"
             android:gravity="center"
             android:text="Thêm"></Button>
         <Button
             android:layout_width="100dp"
-            android:layout_height="70dp"
+            android:layout_height="100dp"
             android:drawableTop="@drawable/banphim"
             android:gravity="center"
             android:text="Bàn phím"></Button>
         <Button
             android:layout_width="100dp"
-            android:layout_height="70dp"
+            android:layout_height="100dp"
             android:drawableTop="@drawable/ghiam"
             android:gravity="center"
             android:text="Ghi âm"></Button>
@@ -79,10 +79,10 @@
 
     <Button
         android:layout_width="100dp"
-        android:layout_height="70dp"
+        android:layout_height="100dp"
         android:layout_gravity="center"
+        android:layout_marginTop="@dimen/dp_70dp"
         android:drawableTop="@drawable/call"
-        android:gravity="center"
-        android:layout_marginTop="@dimen/dp_100dp"></Button>
+        android:gravity="center"></Button>
 </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
