@@ -12,6 +12,21 @@ public class Contact {
     String schedule;
     String dateofborn;
 
+
+    public Contact(int id, String name, String phone, String address, String email,
+                   String facebook, String note, byte[] image, String schedule, String dateofborn) {
+        this.id = id;
+        this.name = name;
+        this.phone = phone;
+        this.address = address;
+        this.email = email;
+        this.facebook = facebook;
+        this.note = note;
+        this.image = image;
+        this.schedule = schedule;
+        this.dateofborn = dateofborn;
+    }
+
     public String getDateofborn() {
         return dateofborn;
     }

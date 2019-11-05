@@ -21,4 +21,8 @@
     <dimen name="dp_30dp">30dp</dimen>
     <dimen name="dp_55dp">55dp</dimen>
     <dimen name="dp_350dp">350dp</dimen>
+    <dimen name="dp_16dp">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
 </resources>

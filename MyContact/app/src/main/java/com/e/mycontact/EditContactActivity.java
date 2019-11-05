@@ -1,14 +1,22 @@
 package com.e.mycontact;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.DatePickerDialog;
+import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+
+import com.e.mycontact.database.Contact;
+import com.e.mycontact.database.ContactDatabase;
+import com.e.mycontact.provider.ContactProvider;
+import com.google.android.material.snackbar.Snackbar;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.text.InputType;
 import android.util.Log;
 import android.view.View;
@@ -18,20 +26,18 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.e.mycontact.database.ContactDatabase;
-import com.e.mycontact.provider.ContactProvider;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-
-public class EditUserActivity extends AppCompatActivity implements View.OnClickListener {
-
+public class EditContactActivity extends AppCompatActivity implements View.OnClickListener{
+    Contact contact2;
     private EditText edt_schedule;
     private EditText edt_dateofborn;
     private DatePickerDialog scheduleDatepicker;
@@ -45,7 +51,9 @@ public class EditUserActivity extends AppCompatActivity implements View.OnClickL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_user);
+        setContentView(R.layout.activity_edit_contact);
+
+        getIntentValue();
         dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
         findViewBySchedule();
         setDateTimeField();
@@ -78,6 +86,49 @@ public class EditUserActivity extends AppCompatActivity implements View.OnClickL
     private void changeMain(){
         Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
+    }
+
+    private void getIntentValue(){
+        Intent intent = this.getIntent();
+        Integer id = intent.getIntExtra("id",0);
+        Uri uri_get= ContentUris.withAppendedId(ContactProvider.CONTENT_URI,id);
+
+        String[] projection = { ContactDatabase.ID, ContactDatabase.COL_NAME,ContactDatabase.COL_PHONE,ContactDatabase.COL_ADDRESS,
+                ContactDatabase.COL_EMAIL,ContactDatabase.COL_FACEBOOK,ContactDatabase.COL_IMAGE,ContactDatabase.COL_NOTE,ContactDatabase.COL_SCHEDULE,ContactDatabase.COL_DATE_OF_BORN };
+        Cursor contact = getContentResolver().query(uri_get,projection,null,null,"name asc");
+        ArrayList<Contact> contact1 = ContactProvider.getAllContact(contact);
+        contact2 = contact1.get(0);
+
+        EditText txt_name = findViewById(R.id.txt_name);
+        txt_name.setText(contact2.getName());
+
+        EditText txt_phone = findViewById(R.id.txt_phone);
+        txt_phone.setText(contact2.getPhone());
+
+        EditText txt_email = findViewById(R.id.txt_email);
+        txt_email.setText(contact2.getEmail());
+
+        EditText txt_address = findViewById(R.id.txt_address);
+        txt_address.setText(contact2.getAddress());
+
+        EditText txt_note = findViewById(R.id.txt_note);
+        txt_note.setText(contact2.getNote());
+
+        EditText txt_facebook = findViewById(R.id.txt_facebook);
+        txt_facebook.setText(contact2.getFacebook());
+
+        EditText txt_schedule = findViewById(R.id.txt_schedule);
+        txt_schedule.setText(contact2.getSchedule());
+
+        EditText txt_dateofborn = findViewById(R.id.txt_dateofborn);
+        txt_dateofborn.setText(contact2.getDateofborn());
+
+        ImageView avt = findViewById(R.id.avt);
+        if(contact2.getImage() != null){
+            Bitmap bitmap = BitmapFactory.decodeByteArray(contact2.getImage(), 0, contact2.getImage().length);
+            avt.setImageBitmap(bitmap);
+        }
+
     }
 
     private void save_data(){
@@ -140,8 +191,16 @@ public class EditUserActivity extends AppCompatActivity implements View.OnClickL
         contentValues.put(ContactDatabase.COL_DATE_OF_BORN,dateBorn);
         Uri uri=null;
         try {
-            uri = getContentResolver().insert(ContactProvider.CONTENT_URI,contentValues);
-            Log.d("uri tai",uri.toString());
+            Intent intent = this.getIntent();
+            Integer id = intent.getIntExtra("id",0);
+            Uri uri_get= ContentUris.withAppendedId(ContactProvider.CONTENT_URI,id);
+            int result = getContentResolver().update(uri_get,contentValues,null,null);
+            if(result == 1){
+                Toast.makeText(this, "Update success", Toast.LENGTH_LONG).show();
+            }
+            else{
+                Toast.makeText(this, "Update fail", Toast.LENGTH_LONG).show();
+            }
         }
         catch (Exception e){
             e.printStackTrace();
@@ -204,7 +263,7 @@ public class EditUserActivity extends AppCompatActivity implements View.OnClickL
 
                 } catch (Exception e) {
                     e.printStackTrace();
-                    Toast.makeText(EditUserActivity.this, "Something went wrong", Toast.LENGTH_LONG).show();
+                   // Toast.makeText(EditUserActivity.this, "Something went wrong", Toast.LENGTH_LONG).show();
                 }
             }
             if(reqCode == CAMERA){
@@ -214,7 +273,7 @@ public class EditUserActivity extends AppCompatActivity implements View.OnClickL
             }
             flag = 0;
         }else {
-            Toast.makeText(EditUserActivity.this, "You haven't picked Image",Toast.LENGTH_LONG).show();
+            //Toast.makeText(EditUserActivity.this, "You haven't picked Image",Toast.LENGTH_LONG).show();
         }
     }
     //Custome function

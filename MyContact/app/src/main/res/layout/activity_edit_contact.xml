@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".EditUserActivity">
+    tools:context=".EditContactActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -13,7 +13,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New Contact"
+            android:text="Edit Contact"
             android:textSize="@dimen/dp_20dp"
             android:textColor="@color/colorPink"
             android:layout_marginLeft="@dimen/dp_150dp"
@@ -28,32 +28,36 @@
             android:textColor="@color/colorPink"
             android:layout_marginTop="@dimen/dp_5dp"
             android:id="@+id/btn_save"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:id="@+id/txt_id"/>
 
     </LinearLayout>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="@dimen/dp_100dp"
-            android:layout_height="@dimen/dp_100dp"
-            android:layout_centerHorizontal="true"
-            android:src="@drawable/person"
-            android:id="@+id/avt"/>
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_50dp"
-            android:layout_marginTop="@dimen/dp_100dp">
-            <Button
-                android:layout_width="@dimen/dp_50dp"
+            android:layout_height="match_parent">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="@dimen/dp_100dp"
+                android:layout_height="@dimen/dp_100dp"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/person"
+                android:id="@+id/avt"/>
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_50dp"
-                android:background="@drawable/camera"
-                android:layout_marginLeft="@dimen/dp_350dp"
-                android:id="@+id/btn_camera"
-                ></Button>
-        </LinearLayout>
+                android:layout_marginTop="@dimen/dp_100dp">
+                <Button
+                    android:layout_width="@dimen/dp_50dp"
+                    android:layout_height="@dimen/dp_50dp"
+                    android:background="@drawable/camera"
+                    android:layout_marginLeft="@dimen/dp_350dp"
+                    android:id="@+id/btn_camera"
+                    ></Button>
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -98,8 +102,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp_25dp"
                     android:hint="Email address"
+                    android:id="@+id/txt_email"
                     android:inputType="textEmailAddress"
-                    android:id="@+id/txt_email"></EditText>
+                    ></EditText>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -167,6 +172,6 @@
                     android:id="@+id/txt_dateofborn"></EditText>
             </LinearLayout>
 
-    </RelativeLayout>
+        </RelativeLayout>
     </ScrollView>
 </LinearLayout>

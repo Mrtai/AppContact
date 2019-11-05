@@ -7,7 +7,8 @@
         android:layout_height="wrap_content"
         android:text="A"
         android:textStyle="bold"
-        android:textSize="@dimen/dp_15dp"
-        android:background="@color/colorGray">
+        android:textSize="@dimen/dp_20dp"
+        android:background="@color/colorGray"
+        android:id="@+id/txt_header">
     </TextView>
 </LinearLayout>

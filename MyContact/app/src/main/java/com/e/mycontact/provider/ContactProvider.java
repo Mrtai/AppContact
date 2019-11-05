@@ -8,16 +8,18 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.text.TextUtils;
+import android.util.Log;
 
+import com.e.mycontact.database.Contact;
 import com.e.mycontact.database.ContactDatabase;
+
+import java.util.ArrayList;
 
 public class ContactProvider extends ContentProvider {
 
-    private static final String AUTHORITY
+    public static final String AUTHORITY
             ="com.e.mycontact.provider.ContactProvider";
-    public static final int CONTACT = 100;
-    public static final int CONTACT_ID = 110;
-    private static final String CONTACT_TABLE = "Contacts";
+    public static final String CONTACT_TABLE = "contact";
     public static final Uri CONTENT_URI =
             Uri.parse("content://" + AUTHORITY + "/" + CONTACT_TABLE);
     public static final int CONTACTS = 1;
@@ -40,13 +42,13 @@ public class ContactProvider extends ContentProvider {
         int rowsDeleted = 0;
 
         switch (uriType) {
-            case CONTACT:
+            case CONTACTS:
                 rowsDeleted = sqlDB.delete(ContactDatabase.TABLE_CONTACT,
                         selection,
                         selectionArgs);
                 break;
 
-            case CONTACT_ID:
+            case CONTACTS_ID:
                 String id = uri.getLastPathSegment();
                 if (TextUtils.isEmpty(selection)) {
                     rowsDeleted = sqlDB.delete(ContactDatabase.TABLE_CONTACT,
@@ -76,12 +78,12 @@ public class ContactProvider extends ContentProvider {
     @Override
     public Uri insert(Uri uri, ContentValues values) {
         int uriType = sURIMatcher.match(uri);
-
+        Log.d("uri",uri.toString());
         SQLiteDatabase sqlDB = mDB.getWritableDatabase();
 
         long id = 0;
         switch (uriType) {
-            case CONTACT:
+            case CONTACTS:
                 id = sqlDB.insert(ContactDatabase.TABLE_CONTACT, null, values);
                 break;
             default:
@@ -102,14 +104,15 @@ public class ContactProvider extends ContentProvider {
                         String[] selectionArgs, String sortOrder) {
         SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
         queryBuilder.setTables(ContactDatabase.TABLE_CONTACT);
-
+        Log.d("uri ",uri.toString());
         int uriType = sURIMatcher.match(uri);
+        Log.d("matchers",String.valueOf(uriType));
         switch (uriType) {
-            case CONTACT_ID:
+            case CONTACTS_ID:
                 queryBuilder.appendWhere(ContactDatabase.ID + "="
                         + uri.getLastPathSegment());
                 break;
-            case CONTACT:
+            case CONTACTS:
                 // no filter
                 break;
             default:
@@ -130,10 +133,10 @@ public class ContactProvider extends ContentProvider {
         int rowsUpdated = 0;
 
         switch (uriType) {
-            case CONTACT:
+            case CONTACTS:
                 rowsUpdated = sqlDB.update(ContactDatabase.TABLE_CONTACT, contentValues, selection, selectionArgs);
                 break;
-            case CONTACT_ID:
+            case CONTACTS_ID:
                 String id = uri.getLastPathSegment();
                 if (TextUtils.isEmpty(selection)) {
                     rowsUpdated = sqlDB.update(ContactDatabase.TABLE_CONTACT,
@@ -155,5 +158,23 @@ public class ContactProvider extends ContentProvider {
         getContext().getContentResolver().notifyChange(uri, null);
         return rowsUpdated;
     }
+    public static ArrayList<Contact> getAllContact(Cursor cursor){
+        ArrayList<Contact> contacts = new ArrayList<>();
+        while (cursor.moveToNext()){
+            int id = cursor.getInt(0);
+            String name = cursor.getString(1);
+            String phone = cursor.getString(2);
+            String address = cursor.getString(3);
+            String email = cursor.getString(4);
+            String facebook = cursor.getString(5);
+            byte[] image = cursor.getBlob(6);
+            String note = cursor.getString(7);
+            String schedule = cursor.getString(8);
+            String born = cursor.getString(9);
+            contacts.add(new Contact(id,name,phone,address,email,facebook,note,image,schedule,born));
+        }
+        return contacts;
+    }
+
 }
 

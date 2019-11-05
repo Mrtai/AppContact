@@ -9,17 +9,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity
+            android:name=".EditContactActivity"
+            android:label="@string/title_activity_edit_contact"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".InfoUserActivity" />
+
         <provider
             android:name=".provider.ContactProvider"
             android:authorities="com.e.mycontact.provider.ContactProvider"
             android:enabled="true"
-            android:exported="true"></provider>
-        <activity android:name=".MessegeActivity">
-        </activity>
-        <activity android:name=".CallActivity">
-        </activity>
-        <activity android:name=".Main_UserActivity">
-        </activity>
+            android:exported="true" />
+
+        <activity android:name=".MessegeActivity" />
+        <activity android:name=".CallActivity" />
         <activity android:name=".EditUserActivity" />
         <activity android:name=".UserActivity" />
         <activity android:name=".ProfileActivity" />
@@ -31,5 +34,7 @@
             </intent-filter>
         </activity>
     </application>
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
 
 </manifest>

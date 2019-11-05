@@ -62,4 +62,7 @@
   <dimen name="dp_350dp">
     357.66dp
   </dimen>
+  <dimen name="dp_16dp">
+    16.35dp
+  </dimen>
 </resources>
