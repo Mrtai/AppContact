@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".EditContactActivity">
+    tools:context=".EditProfileActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,7 +14,7 @@
             android:id="@+id/txt_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Edit Contact"
+            android:text="Edit profile"
             android:textSize="@dimen/dp_20dp"
             android:textColor="@color/colorPink"
             android:layout_marginLeft="@dimen/dp_150dp"
@@ -119,45 +119,6 @@
                     android:layout_marginLeft="@dimen/dp_25dp"
                     android:hint="Address"
                     android:id="@+id/txt_address"></EditText>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Note"
-                    android:textColor="@android:color/black"></TextView>
-
-                <EditText
-                    android:layout_width="@dimen/dp_350dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dp_25dp"
-                    android:hint="Note"
-                    android:id="@+id/txt_note"></EditText>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Facebook"
-                    android:textColor="@android:color/black"
-                    ></TextView>
-
-                <EditText
-                    android:layout_width="@dimen/dp_350dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dp_25dp"
-                    android:hint="Facebook"
-                    android:textColor="@android:color/black"
-                    android:id="@+id/txt_facebook"></EditText>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Schedule"
-                    android:textColor="@android:color/black"></TextView>
-
-                <EditText
-                    android:layout_width="@dimen/dp_350dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dp_25dp"
-                    android:hint="Date/Month/Year"
-                    android:drawableRight="@drawable/calendar"
-                    android:id="@+id/txt_schedule"></EditText>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

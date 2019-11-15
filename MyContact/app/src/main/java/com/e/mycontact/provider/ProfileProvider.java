@@ -10,30 +10,28 @@ import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.e.mycontact.database.Contact;
 import com.e.mycontact.database.ContactDatabase;
+import com.e.mycontact.database.Profile;
 
 import java.util.ArrayList;
 
-public class ContactProvider extends ContentProvider {
-
+public class ProfileProvider extends ContentProvider {
     public static final String AUTHORITY
-            ="com.e.mycontact.provider.ContactProvider";
-    public static final String CONTACT_TABLE = "contact";
+            ="com.e.mycontact.provider.ProfileProvider";
+    public static final String PROFILE_TABLE = "profile";
 
     public static final Uri CONTENT_URI =
-            Uri.parse("content://" + AUTHORITY + "/" + CONTACT_TABLE);
-    public static final int CONTACTS = 1;
-    public static final int CONTACTS_ID = 2;
+            Uri.parse("content://" + AUTHORITY + "/" + PROFILE_TABLE);
+    public static final int PROFILES = 1;
+    public static final int PROFILES_ID = 2;
     private static final UriMatcher sURIMatcher =
             new UriMatcher(UriMatcher.NO_MATCH);
     static {
-        sURIMatcher.addURI(AUTHORITY, CONTACT_TABLE, CONTACTS);
-        sURIMatcher.addURI(AUTHORITY, CONTACT_TABLE + "/#",CONTACTS_ID);
+        sURIMatcher.addURI(AUTHORITY, PROFILE_TABLE, PROFILES);
+        sURIMatcher.addURI(AUTHORITY, PROFILE_TABLE + "/#",PROFILES_ID);
     }
-
     private ContactDatabase mDB;
-    public ContactProvider() {
+    public ProfileProvider() {
     }
 
     @Override
@@ -43,20 +41,20 @@ public class ContactProvider extends ContentProvider {
         int rowsDeleted = 0;
 
         switch (uriType) {
-            case CONTACTS:
-                rowsDeleted = sqlDB.delete(ContactDatabase.TABLE_CONTACT,
+            case PROFILES:
+                rowsDeleted = sqlDB.delete(ContactDatabase.TABLE_PROFILE,
                         selection,
                         selectionArgs);
                 break;
 
-            case CONTACTS_ID:
+            case PROFILES_ID:
                 String id = uri.getLastPathSegment();
                 if (TextUtils.isEmpty(selection)) {
-                    rowsDeleted = sqlDB.delete(ContactDatabase.TABLE_CONTACT,
+                    rowsDeleted = sqlDB.delete(ContactDatabase.TABLE_PROFILE,
                             ContactDatabase.ID + "=" + id,
                             null);
                 } else {
-                    rowsDeleted = sqlDB.delete(ContactDatabase.TABLE_CONTACT,
+                    rowsDeleted = sqlDB.delete(ContactDatabase.TABLE_PROFILE,
                             ContactDatabase.ID + "=" + id
                                     + " and " + selection,
                             selectionArgs);
@@ -84,14 +82,14 @@ public class ContactProvider extends ContentProvider {
 
         long id = 0;
         switch (uriType) {
-            case CONTACTS:
-                id = sqlDB.insert(ContactDatabase.TABLE_CONTACT, null, values);
+            case PROFILES:
+                id = sqlDB.insert(ContactDatabase.TABLE_PROFILE, null, values);
                 break;
             default:
                 throw new IllegalArgumentException("Unknown URI: " + uri);
         }
         getContext().getContentResolver().notifyChange(uri, null);
-        return Uri.parse("contact" + "/" + id);
+        return Uri.parse("profile" + "/" + id);
     }
 
     @Override
@@ -104,16 +102,16 @@ public class ContactProvider extends ContentProvider {
     public Cursor query(Uri uri, String[] projection, String selection,
                         String[] selectionArgs, String sortOrder) {
         SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
-        queryBuilder.setTables(ContactDatabase.TABLE_CONTACT);
+        queryBuilder.setTables(ContactDatabase.TABLE_PROFILE);
         Log.d("uri ",uri.toString());
         int uriType = sURIMatcher.match(uri);
         Log.d("matchers",String.valueOf(uriType));
         switch (uriType) {
-            case CONTACTS_ID:
+            case PROFILES_ID:
                 queryBuilder.appendWhere(ContactDatabase.ID + "="
                         + uri.getLastPathSegment());
                 break;
-            case CONTACTS:
+            case PROFILES:
                 // no filter
                 break;
             default:
@@ -134,18 +132,18 @@ public class ContactProvider extends ContentProvider {
         int rowsUpdated = 0;
 
         switch (uriType) {
-            case CONTACTS:
+            case PROFILES:
                 rowsUpdated = sqlDB.update(ContactDatabase.TABLE_CONTACT, contentValues, selection, selectionArgs);
                 break;
-            case CONTACTS_ID:
+            case PROFILES_ID:
                 String id = uri.getLastPathSegment();
                 if (TextUtils.isEmpty(selection)) {
-                    rowsUpdated = sqlDB.update(ContactDatabase.TABLE_CONTACT,
+                    rowsUpdated = sqlDB.update(ContactDatabase.TABLE_PROFILE,
                             contentValues,
                             ContactDatabase.ID + "=" + id,
                             null);
                 } else {
-                    rowsUpdated = sqlDB.update(ContactDatabase.TABLE_CONTACT,
+                    rowsUpdated = sqlDB.update(ContactDatabase.TABLE_PROFILE,
                             contentValues,
                             ContactDatabase.ID + "=" + id
                                     + " and "
@@ -159,23 +157,19 @@ public class ContactProvider extends ContentProvider {
         getContext().getContentResolver().notifyChange(uri, null);
         return rowsUpdated;
     }
-    public static ArrayList<Contact> getAllContact(Cursor cursor){
-        ArrayList<Contact> contacts = new ArrayList<>();
+
+    public static ArrayList<Profile> getAllContact(Cursor cursor){
+        ArrayList<Profile> profiles = new ArrayList<>();
         while (cursor.moveToNext()){
             int id = cursor.getInt(0);
             String name = cursor.getString(1);
             String phone = cursor.getString(2);
             String address = cursor.getString(3);
             String email = cursor.getString(4);
-            String facebook = cursor.getString(5);
-            byte[] image = cursor.getBlob(6);
-            String note = cursor.getString(7);
-            String schedule = cursor.getString(8);
-            String born = cursor.getString(9);
-            contacts.add(new Contact(id,name,phone,address,email,facebook,note,image,schedule,born));
+            byte[] image = cursor.getBlob(5);
+            String born = cursor.getString(6);
+            profiles.add(new Profile(id,name,phone,address,email,image,born));
         }
-        return contacts;
+        return profiles;
     }
-
 }
-

@@ -39,15 +39,14 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
 
         ImageView img = covertView.findViewById(R.id.avt);
         TextView txt1 = covertView.findViewById(R.id.txt_row_name);
+        TextView txtId = covertView.findViewById(R.id.txt_id);
 
         if(arrayList.get(position).getImage() != null) {
             Bitmap bitmap = BitmapFactory.decodeByteArray(arrayList.get(position).getImage(), 0, arrayList.get(position).getImage().length);
             img.setImageBitmap(bitmap);
         }
-
-
         txt1.setText(arrayList.get(position).getName());
-
+        txtId.setText(String.valueOf(arrayList.get(position).getId()));
         return covertView;
 
     }

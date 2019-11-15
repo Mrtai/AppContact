@@ -12,6 +12,7 @@
         android:orientation="horizontal"
         android:layout_marginLeft="@dimen/dp_10dp">
         <TextView
+            android:id="@+id/txtSearch"
             android:layout_width="@dimen/dp_355dp"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/ic_search_black_24dp"

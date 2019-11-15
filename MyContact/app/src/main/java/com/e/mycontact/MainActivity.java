@@ -4,17 +4,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.ContentUris;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CursorAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
 
 import com.e.mycontact.Adapter.ContactAdapter;
 import com.e.mycontact.Header.ChildModel;
@@ -23,7 +28,9 @@ import com.e.mycontact.Header.Section;
 import com.e.mycontact.Header.SectionAdapter;
 import com.e.mycontact.database.Contact;
 import com.e.mycontact.database.ContactDatabase;
+import com.e.mycontact.database.Profile;
 import com.e.mycontact.provider.ContactProvider;
+import com.e.mycontact.provider.ProfileProvider;
 import com.shuhart.stickyheader.StickyHeaderItemDecorator;
 
 import java.text.Normalizer;
@@ -37,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     private ListView list_user;
     ContactAdapter contactAdapter;
 
+    private Profile profile ;
     private ArrayList<Section> sectionArrayList;
 
     @Override
@@ -44,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ImageView img= findViewById(R.id.img_profile);
+
         Button btn_add = findViewById(R.id.btn_add);
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,6 +84,21 @@ public class MainActivity extends AppCompatActivity {
 
         decorator.attachToRecyclerView(recyclerView);
 
+        getProfile();
+
+
+        if(profile.getImage() != null) {
+            Bitmap bitmap = BitmapFactory.decodeByteArray(profile.getImage(), 0, profile.getImage().length);
+            img.setImageBitmap(bitmap);
+        }
+        TextView searchView = findViewById(R.id.txtSearch);
+        searchView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                changeSearch();
+            }
+        });
+
     }
     @Override
     public  void onStart(){
@@ -84,9 +108,50 @@ public class MainActivity extends AppCompatActivity {
         Intent i = new Intent(this, ProfileActivity.class);
         startActivity(i);
     }
+    private void getProfile(){
+        Uri uri_get= ContentUris.withAppendedId(ProfileProvider.CONTENT_URI,1);
+        String[] projection = { ContactDatabase.ID, ContactDatabase.COL_NAME,ContactDatabase.COL_PHONE,ContactDatabase.COL_ADDRESS,
+                ContactDatabase.COL_EMAIL,ContactDatabase.COL_IMAGE,ContactDatabase.COL_DATE_OF_BORN };
+        Cursor p = getContentResolver().query(uri_get,projection,null,null,"name asc");
+        ArrayList<Profile> profiles = ProfileProvider.getAllContact(p);
+
+        if(profiles.size() == 0){
+            profile= new Profile();
+            createProfile();
+        }
+        else{
+            profile = profiles.get(0);
+        }
+    }
+    private void createProfile(){
+        ContentValues contentValues = new ContentValues();
+        String name = "My name";
+        String phone = "";
+        String address = "";
+        String email ="";
+        String dateBorn ="";
+        //add value
+        contentValues.put(ContactDatabase.COL_NAME,name);
+        contentValues.put(ContactDatabase.COL_PHONE,phone);
+        contentValues.put(ContactDatabase.COL_ADDRESS,address);
+        contentValues.put(ContactDatabase.COL_EMAIL,email);
+        contentValues.put(ContactDatabase.COL_DATE_OF_BORN,dateBorn);
+        Uri uri=null;
+        try {
+            uri = getContentResolver().insert(ProfileProvider.CONTENT_URI,contentValues);
+            Log.d("uri tai",uri.toString());
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 
     private void changeActivityAdd(){
         Intent i = new Intent(this, EditUserActivity.class);
+        startActivity(i);
+    }
+    private void changeSearch(){
+        Intent i = new Intent(this,SearchActivity.class);
         startActivity(i);
     }
     private void setDataToListView(){

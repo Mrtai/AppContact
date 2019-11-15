@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -32,6 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_70dp">
             <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/img_profile"
                 android:layout_width="@dimen/dp_100dp"
                 android:layout_height="@dimen/dp_100dp"
                 android:layout_centerHorizontal="true"
@@ -60,42 +61,16 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/name_user_profile"
+                            android:id="@+id/txt_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:layout_marginTop="@dimen/dp_50dp"
                             android:fontFamily="sans-serif-thin"
-                            android:text="Nhi"
+                            android:text="Name"
                             android:textColor="@color/colorBlack"
                             android:textSize="@dimen/dp_25dp"
                             android:textStyle="bold" />
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center">
-                        <Button
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:gravity="center"
-                            android:layout_gravity="center"
-                            android:drawableEnd="@drawable/whatsapp"
-                            ></Button>
-                            <Button
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
-                                android:gravity="center"
-                                android:layout_gravity="center"
-                                android:drawableEnd="@drawable/email"
-                                ></Button>
-                            <Button
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
-                                android:gravity="center"
-                                android:layout_gravity="center"
-                                android:drawableEnd="@drawable/zalo"
-                                ></Button>
-                        </LinearLayout>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -111,7 +86,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dp_15dp"
                         android:fontFamily="sans-serif-thin"
-                        android:text="@string/account"
+                        android:text="Infomation"
                         android:textColor="@color/colorBlack"
                         android:textSize="@dimen/dp_20dp" />
 
@@ -157,7 +132,7 @@
                                     android:textSize="@dimen/dp_15dp" />
 
                                 <TextView
-                                    android:id="@+id/dob_user_profile"
+                                    android:id="@+id/txt_dob"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="@dimen/dp_5dp"
@@ -206,7 +181,7 @@
                                     android:textSize="@dimen/dp_15dp" />
 
                                 <TextView
-                                    android:id="@+id/email_user_profile"
+                                    android:id="@+id/txt_email"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="@dimen/dp_5dp"
@@ -255,7 +230,7 @@
                                     android:textSize="@dimen/dp_15dp" />
 
                                 <TextView
-                                    android:id="@+id/phone_number_user_profile"
+                                    android:id="@+id/txt_phone"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="@dimen/dp_5dp"
@@ -304,7 +279,7 @@
                                     android:textSize="@dimen/dp_15dp" />
 
                                 <TextView
-                                    android:id="@+id/address_location_user_profile"
+                                    android:id="@+id/txt_address"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="@dimen/dp_5dp"
@@ -314,12 +289,7 @@
                             </LinearLayout>
                         </LinearLayout>
                     </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dp_25dp"
-                        android:orientation="horizontal">
-                    </LinearLayout>
+
                 </LinearLayout>
             </LinearLayout>
         </RelativeLayout>
@@ -327,4 +297,11 @@
             </RelativeLayout>
         </LinearLayout>
     </ScrollView>
-</LinearLayout>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    android:id="@+id/fab"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom|end"
+    android:layout_margin="@dimen/dp_20dp"
+    app:srcCompat="@android:drawable/ic_menu_edit" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
