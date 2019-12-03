@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Profile profile ;
     private ArrayList<Section> sectionArrayList;
-
+    ImageView btn_group;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,11 +98,22 @@ public class MainActivity extends AppCompatActivity {
                 changeSearch();
             }
         });
+        btn_group = findViewById(R.id.btn_group);
+        btn_group.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                changeGroup();
+            }
+        });
 
     }
     @Override
     public  void onStart(){
         super.onStart();
+    }
+    private void changeGroup(){
+        Intent i = new Intent(this, GroupActivity.class);
+        startActivity(i);
     }
     private void changeActiveProfile(){
         Intent i = new Intent(this, ProfileActivity.class);
@@ -156,7 +167,7 @@ public class MainActivity extends AppCompatActivity {
     }
     private void setDataToListView(){
         String[] projection = { ContactDatabase.ID, ContactDatabase.COL_NAME,ContactDatabase.COL_PHONE,ContactDatabase.COL_ADDRESS,
-                ContactDatabase.COL_EMAIL,ContactDatabase.COL_FACEBOOK,ContactDatabase.COL_IMAGE,ContactDatabase.COL_NOTE,ContactDatabase.COL_SCHEDULE,ContactDatabase.COL_DATE_OF_BORN };
+                ContactDatabase.COL_EMAIL,ContactDatabase.COL_FACEBOOK,ContactDatabase.COL_IMAGE,ContactDatabase.COL_NOTE,ContactDatabase.COL_SCHEDULE,ContactDatabase.COL_DATE_OF_BORN ,ContactDatabase.COL_FAVOURITE,ContactDatabase.COL_GROUP};
         Cursor contacts = getContentResolver().query(ContactProvider.CONTENT_URI,projection,null,null,"name asc");
         ArrayList<Contact> arrayList = ContactProvider.getAllContact(contacts);
 
@@ -188,7 +199,7 @@ public class MainActivity extends AppCompatActivity {
             ChildModel childModel= new ChildModel(ichild);
             childModel.setChild(arrayList.get(i).getName());
             childModel.setImageChild(arrayList.get(i).getImage());
-
+            childModel.setFavouriteChild(arrayList.get(i).getFavourite());
             childModel.setIdChild(arrayList.get(i).getId());
             sectionArrayList.add(childModel);
         }

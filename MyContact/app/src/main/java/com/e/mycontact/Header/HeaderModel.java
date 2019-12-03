@@ -36,4 +36,8 @@ public class HeaderModel implements Section {
     public int getId() {
         return 0;
     }
+    @Override
+    public int getFavourite(){
+        return 0;
+    }
 }

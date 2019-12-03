@@ -17,7 +17,7 @@
         />
     <TextView
         android:id="@+id/text_view"
-        android:layout_width="match_parent"
+        android:layout_width="@dimen/dp_300dp"
         android:layout_height="match_parent"
         android:background="@android:color/white"
         android:gravity="center_vertical"
@@ -26,4 +26,12 @@
         android:textColor="@android:color/black"
         android:textSize="@dimen/dp_16dp"
         tools:text="Item" />
+    <ImageView
+        android:id="@+id/favourite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/dislike"
+        android:layout_marginTop="@dimen/dp_10dp"
+        />
+
 </LinearLayout>

@@ -80,6 +80,18 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
 
             }
         });
+        Button btn_home = findViewById(R.id.btn_home);
+        btn_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                changeMain();
+            }
+        });
+    }
+
+    private void changeMain() {
+        Intent i = new Intent(this,MainActivity.class);
+        startActivity(i);
     }
 
     private void changeProfile() {

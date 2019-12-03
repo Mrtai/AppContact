@@ -65,4 +65,22 @@
   <dimen name="dp_16dp">
     21.02dp
   </dimen>
+  <dimen name="dp_300dp">
+    394.16dp
+  </dimen>
+  <dimen name="dp_200dp">
+    262.77dp
+  </dimen>
+  <dimen name="dp_185dp">
+    243.07dp
+  </dimen>
+  <dimen name="dp_130dp">
+    170.8dp
+  </dimen>
+  <dimen name="dp_120dp">
+    157.66dp
+  </dimen>
+  <dimen name="dp_110dp">
+    144.53dp
+  </dimen>
 </resources>

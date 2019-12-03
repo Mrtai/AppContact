@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.SearchView;
 
 import android.database.Cursor;
@@ -52,13 +53,24 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
             }
         });
         listView.setOnItemClickListener(this);
+        Button btn_home = findViewById(R.id.btn_home);
+        btn_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                changeMain();
+            }
+        });
 
+    }
 
+    private void changeMain() {
+        Intent i = new Intent(this,MainActivity.class);
+        startActivity(i);
     }
 
     private void SearchContact(String newText){
         String[] projection = { ContactDatabase.ID, ContactDatabase.COL_NAME,ContactDatabase.COL_PHONE,ContactDatabase.COL_ADDRESS,
-                ContactDatabase.COL_EMAIL,ContactDatabase.COL_FACEBOOK,ContactDatabase.COL_IMAGE,ContactDatabase.COL_NOTE,ContactDatabase.COL_SCHEDULE,ContactDatabase.COL_DATE_OF_BORN };
+                ContactDatabase.COL_EMAIL,ContactDatabase.COL_FACEBOOK,ContactDatabase.COL_IMAGE,ContactDatabase.COL_NOTE,ContactDatabase.COL_SCHEDULE,ContactDatabase.COL_DATE_OF_BORN ,ContactDatabase.COL_FAVOURITE,ContactDatabase.COL_GROUP};
         Cursor contacts = getContentResolver().query(ContactProvider.CONTENT_URI,projection,null,null,"name asc");
         ArrayList<Contact> arrayList = ContactProvider.getAllContact(contacts);
         ArrayList<Contact> tmp= new ArrayList<>();

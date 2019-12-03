@@ -14,6 +14,7 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -126,7 +127,7 @@ public class InfoUserActivity extends AppCompatActivity {
         Uri uri_get= ContentUris.withAppendedId(ContactProvider.CONTENT_URI,id);
 
         String[] projection = { ContactDatabase.ID, ContactDatabase.COL_NAME,ContactDatabase.COL_PHONE,ContactDatabase.COL_ADDRESS,
-                ContactDatabase.COL_EMAIL,ContactDatabase.COL_FACEBOOK,ContactDatabase.COL_IMAGE,ContactDatabase.COL_NOTE,ContactDatabase.COL_SCHEDULE,ContactDatabase.COL_DATE_OF_BORN };
+                ContactDatabase.COL_EMAIL,ContactDatabase.COL_FACEBOOK,ContactDatabase.COL_IMAGE,ContactDatabase.COL_NOTE,ContactDatabase.COL_SCHEDULE,ContactDatabase.COL_DATE_OF_BORN ,ContactDatabase.COL_FAVOURITE,ContactDatabase.COL_GROUP};
         Cursor contact = getContentResolver().query(uri_get,projection,null,null,"name asc");
         ArrayList<Contact> contact1 = ContactProvider.getAllContact(contact);
         contact2 = contact1.get(0);
@@ -151,6 +152,24 @@ public class InfoUserActivity extends AppCompatActivity {
         if(contact2.getImage() != null){
             Bitmap bitmap = BitmapFactory.decodeByteArray(contact2.getImage(), 0, contact2.getImage().length);
             avt.setImageBitmap(bitmap);
+        }
+        if(contact2.getFavourite() == 1){
+            Drawable like = getResources().getDrawable(R.drawable.like);
+            ImageView imagef = findViewById(R.id.img_favourite);
+            imagef.setImageDrawable(like);
+        }
+        TextView txt_group = findViewById(R.id.txt_group);
+        if(contact2.getC_group() == 1){
+            txt_group.setText("Đồng nghiệp");
+        }
+        else if(contact2.getC_group() == 2){
+            txt_group.setText("Gia đình");
+        }
+        else if(contact2.getC_group() == 3){
+            txt_group.setText("Bạn bè");
+        }
+        else{
+            txt_group.setText("Chưa có nhóm");
         }
 
     }

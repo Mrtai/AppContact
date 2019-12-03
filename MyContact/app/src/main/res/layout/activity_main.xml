@@ -36,7 +36,7 @@
             android:layout_height="@dimen/dp_100dp"
             android:layout_centerHorizontal="true"
             android:elevation="@dimen/dp_1dp"
-            android:src="@drawable/person"
+            android:src="@drawable/boss"
             android:id="@+id/img_profile"/>
         <TextView
             android:layout_width="wrap_content"
@@ -46,6 +46,33 @@
             android:textSize="@dimen/dp_30dp"
             android:layout_marginLeft="@dimen/dp_10dp"
             android:textColor="@color/colorAccent"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="@dimen/dp_50dp"
+            android:layout_height="@dimen/dp_50dp"
+            android:layout_centerHorizontal="true"
+            android:elevation="@dimen/dp_1dp"
+            android:src="@drawable/person"
+            android:id="@+id/img_group"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nhóm của tôi"
+            android:layout_marginLeft="@dimen/dp_10dp"
+            android:textSize="@dimen/dp_30dp"
+            android:layout_marginTop="@dimen/dp_5dp"/>
+        <ImageView
+            android:id="@+id/btn_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/muiten"
+            android:layout_marginLeft="@dimen/dp_130dp"
+            android:layout_marginTop="@dimen/dp_10dp"/>
+
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -60,6 +87,6 @@
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-        android:layout_marginLeft="@dimen/dp_5dp"/>
+            android:layout_marginLeft="@dimen/dp_5dp"/>
 
 </LinearLayout>

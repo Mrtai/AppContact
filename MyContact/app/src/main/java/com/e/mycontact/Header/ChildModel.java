@@ -6,7 +6,18 @@ public class ChildModel implements Section {
     byte[] imageChild;
     String child;
     int idChild;
+
+    int favouriteChild;
+
     private int section;
+
+    public int getFavouriteChild() {
+        return favouriteChild;
+    }
+
+    public void setFavouriteChild(int favouriteChild) {
+        this.favouriteChild = favouriteChild;
+    }
 
     public int getIdChild() {
         return idChild;
@@ -54,6 +65,10 @@ public class ChildModel implements Section {
     @Override
     public int getId() {
         return idChild;
+    }
+    @Override
+    public int getFavourite(){
+     return favouriteChild;
     }
 
 

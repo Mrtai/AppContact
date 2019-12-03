@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SearchActivity"></activity>
+        <activity android:name=".GroupActivity"></activity>
+        <activity android:name=".SearchActivity" />
 
         <provider
             android:name=".provider.ProfileProvider"

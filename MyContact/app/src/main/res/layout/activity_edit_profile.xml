@@ -10,6 +10,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorBackground">
+        <Button
+            android:id="@+id/btn_home"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_50dp"
+            android:background="@drawable/ic_home_black_24dp"/>
         <TextView
             android:id="@+id/txt_title"
             android:layout_width="wrap_content"
@@ -17,7 +22,7 @@
             android:text="Edit profile"
             android:textSize="@dimen/dp_20dp"
             android:textColor="@color/colorPink"
-            android:layout_marginLeft="@dimen/dp_150dp"
+            android:layout_marginLeft="@dimen/dp_110dp"
             android:layout_marginTop="@dimen/dp_5dp"
             />
         <Button
@@ -45,7 +50,7 @@
                 android:layout_width="@dimen/dp_100dp"
                 android:layout_height="@dimen/dp_100dp"
                 android:layout_centerHorizontal="true"
-                android:src="@drawable/person"
+                android:src="@drawable/boss"
                 android:id="@+id/avt"/>
             <LinearLayout
                 android:layout_width="match_parent"

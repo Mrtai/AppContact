@@ -8,4 +8,5 @@ public interface Section {
     byte[] getImage();
 
     int sectionPosition();
+    int getFavourite();
 }

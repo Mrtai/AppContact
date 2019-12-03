@@ -20,10 +20,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.text.InputType;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 
@@ -32,6 +34,7 @@ import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -48,12 +51,15 @@ public class EditContactActivity extends AppCompatActivity implements View.OnCli
     CircleImageView imageView;
     int flag = 0;
     Bitmap bitmap = null;
+    ArrayAdapter<String> dataAdapter;
+    Spinner siSpinner ;
+    Button bt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_contact);
 
-        getIntentValue();
+
         dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
         findViewBySchedule();
         setDateTimeField();
@@ -81,6 +87,34 @@ public class EditContactActivity extends AppCompatActivity implements View.OnCli
 
             }
         });
+        List<String> listGroup = new ArrayList<>();
+        listGroup.add("Không");
+        listGroup.add("Đồng nghiệp");
+        listGroup.add("Gia đình");
+        listGroup.add("Bạn bè");
+        dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listGroup);
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // attaching data adapter to spinner
+        siSpinner = findViewById(R.id.spinerGroup);
+
+        siSpinner.setAdapter(dataAdapter);
+
+        bt = findViewById(R.id.btn_like);
+        bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                changeFavourite();
+            }
+        });
+        Button btn_home = findViewById(R.id.btn_home);
+        btn_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                changeMain();
+            }
+        });
+        getIntentValue();
 
     }
     private void changeMain(){
@@ -94,7 +128,7 @@ public class EditContactActivity extends AppCompatActivity implements View.OnCli
         Uri uri_get= ContentUris.withAppendedId(ContactProvider.CONTENT_URI,id);
 
         String[] projection = { ContactDatabase.ID, ContactDatabase.COL_NAME,ContactDatabase.COL_PHONE,ContactDatabase.COL_ADDRESS,
-                ContactDatabase.COL_EMAIL,ContactDatabase.COL_FACEBOOK,ContactDatabase.COL_IMAGE,ContactDatabase.COL_NOTE,ContactDatabase.COL_SCHEDULE,ContactDatabase.COL_DATE_OF_BORN };
+                ContactDatabase.COL_EMAIL,ContactDatabase.COL_FACEBOOK,ContactDatabase.COL_IMAGE,ContactDatabase.COL_NOTE,ContactDatabase.COL_SCHEDULE,ContactDatabase.COL_DATE_OF_BORN ,ContactDatabase.COL_FAVOURITE,ContactDatabase.COL_GROUP};
         Cursor contact = getContentResolver().query(uri_get,projection,null,null,"name asc");
         ArrayList<Contact> contact1 = ContactProvider.getAllContact(contact);
         contact2 = contact1.get(0);
@@ -128,9 +162,67 @@ public class EditContactActivity extends AppCompatActivity implements View.OnCli
             Bitmap bitmap = BitmapFactory.decodeByteArray(contact2.getImage(), 0, contact2.getImage().length);
             avt.setImageBitmap(bitmap);
         }
+        if(contact2.getC_group() == 0){
+            siSpinner.setSelection(0);
+        }
+        else if(contact2.getC_group() == 1){
+            siSpinner.setSelection(1);
+        }
+        else if(contact2.getC_group() == 2){
+            siSpinner.setSelection(2);
+        }
+        else{
+            siSpinner.setSelection(3);
+        }
+        if(contact2.getFavourite() == 1){
+
+            bt.setBackground(getResources().getDrawable(R.drawable.like));
+        }
+
 
     }
 
+    private void changeFavourite(){
+        Intent intent = this.getIntent();
+        Integer id = intent.getIntExtra("id",0);
+        Uri uri_get= ContentUris.withAppendedId(ContactProvider.CONTENT_URI,id);
+        ContentValues contentValues = new ContentValues();
+        if(contact2.getFavourite() == 0){
+            contentValues.put(ContactDatabase.COL_FAVOURITE,1);
+            try {
+                int result = getContentResolver().update(uri_get,contentValues,null,null);
+                if(result == 1){
+                    Toast.makeText(this, "My favourite", Toast.LENGTH_LONG).show();
+                    contact2.setFavourite(1);
+                    bt.setBackground(getResources().getDrawable(R.drawable.like));
+                }
+                else{
+                    Toast.makeText(this, "Update fail", Toast.LENGTH_LONG).show();
+                }
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+
+        }
+        else{
+            contentValues.put(ContactDatabase.COL_FAVOURITE,0);
+            try {
+                int result = getContentResolver().update(uri_get,contentValues,null,null);
+                if(result == 1){
+                    Toast.makeText(this, "Normal", Toast.LENGTH_LONG).show();
+                    bt.setBackground(getResources().getDrawable(R.drawable.dislike));
+                    contact2.setFavourite(0);
+                }
+                else{
+                    Toast.makeText(this, "Update fail", Toast.LENGTH_LONG).show();
+                }
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+    }
     private void save_data(){
         ContentValues contentValues = new ContentValues();
         EditText editText = this.findViewById(R.id.txt_name);
@@ -156,6 +248,21 @@ public class EditContactActivity extends AppCompatActivity implements View.OnCli
 
         EditText edtBorn = this.findViewById(R.id.txt_dateofborn);
         String dateBorn = edtBorn.getText().toString();
+
+        Integer c_group = 0;
+        String text = siSpinner.getSelectedItem().toString();
+        if(text.equals("Không")){
+            c_group = 0;
+        }
+        else if(text.equals("Đồng nghiệp")){
+            c_group = 1;
+        }
+        else if(text.equals("Gia đình")){
+            c_group = 2;
+        }
+        else{
+            c_group = 3;
+        }
         //get image
         if(bitmap != null){
             try {
@@ -189,6 +296,7 @@ public class EditContactActivity extends AppCompatActivity implements View.OnCli
         contentValues.put(ContactDatabase.COL_NOTE,note);
         contentValues.put(ContactDatabase.COL_SCHEDULE,schedule);
         contentValues.put(ContactDatabase.COL_DATE_OF_BORN,dateBorn);
+        contentValues.put(ContactDatabase.COL_GROUP,c_group);
         Uri uri=null;
         try {
             Intent intent = this.getIntent();

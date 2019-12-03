@@ -22,11 +22,13 @@ public class ContactDatabase extends SQLiteOpenHelper {
     public static final String COL_NOTE = "note";
     public static final String COL_SCHEDULE = "schedule";
     public static final String COL_DATE_OF_BORN = "dateofborn";
+    public static final String COL_FAVOURITE = "favourite";
+    public static final String COL_GROUP = "c_group";
 
     private static final String CREATE_TABLE_CONTACT = "create table " + TABLE_CONTACT
             + " (" + ID + " integer primary key autoincrement, " + COL_NAME
             + " text not null, " + COL_PHONE + " text not null, "+COL_ADDRESS+" text, "+COL_EMAIL+" text, "+
-            COL_FACEBOOK+" text,"+COL_IMAGE+" blob,"+COL_NOTE+" text,"+COL_SCHEDULE+" text,"+COL_DATE_OF_BORN+" text);";
+            COL_FACEBOOK+" text,"+COL_IMAGE+" blob,"+COL_NOTE+" text,"+COL_SCHEDULE+" text,"+COL_DATE_OF_BORN+" text,"+COL_FAVOURITE+" integer,"+COL_GROUP+" integer);";
     private static final String CREATE_TABLE_PROFILE = "create table " + TABLE_PROFILE
             + " (" + ID + " integer primary key autoincrement, " + COL_NAME
             + " text not null, " + COL_PHONE + " text not null, "+COL_ADDRESS+" text, "+COL_EMAIL+" text, "

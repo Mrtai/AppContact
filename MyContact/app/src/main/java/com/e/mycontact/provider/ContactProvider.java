@@ -114,7 +114,7 @@ public class ContactProvider extends ContentProvider {
                         + uri.getLastPathSegment());
                 break;
             case CONTACTS:
-                // no filter
+
                 break;
             default:
                 throw new IllegalArgumentException("Unknown URI");
@@ -172,7 +172,9 @@ public class ContactProvider extends ContentProvider {
             String note = cursor.getString(7);
             String schedule = cursor.getString(8);
             String born = cursor.getString(9);
-            contacts.add(new Contact(id,name,phone,address,email,facebook,note,image,schedule,born));
+            Integer favourite = cursor.getInt(10);
+            Integer group = cursor.getInt(11);
+            contacts.add(new Contact(id,name,phone,address,email,facebook,note,image,schedule,born,favourite,group));
         }
         return contacts;
     }

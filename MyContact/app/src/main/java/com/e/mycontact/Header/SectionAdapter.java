@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -52,6 +53,7 @@ public class SectionAdapter extends StickyAdapter<RecyclerView.ViewHolder,Recycl
                     String id = txtId.getText().toString();
                     Integer uId = Integer.valueOf(id);
                     changeInfoUser(parent.getContext(),uId);
+
                 }
             });
 
@@ -77,6 +79,11 @@ public class SectionAdapter extends StickyAdapter<RecyclerView.ViewHolder,Recycl
             if(sectionArrayList.get(position).getImage() != null) {
                 Bitmap bitmap = BitmapFactory.decodeByteArray(sectionArrayList.get(position).getImage(), 0, sectionArrayList.get(position).getImage().length);
                 ((ItemViewHolder) holder).imageView.setImageBitmap(bitmap);
+            }
+            if(sectionArrayList.get(position).getFavourite() == 1){
+
+                Drawable placeholder = ((ItemViewHolder) holder).favouriteView.getContext().getResources().getDrawable(R.drawable.like);
+                ((ItemViewHolder) holder).favouriteView.setImageDrawable(placeholder);
             }
             ((ItemViewHolder) holder).textViewId.setText(String.valueOf(sectionArrayList.get(position).getId()));
         }
@@ -124,11 +131,13 @@ public class SectionAdapter extends StickyAdapter<RecyclerView.ViewHolder,Recycl
         TextView textView;
         ImageView imageView;
         TextView textViewId;
+        ImageView favouriteView;
         ItemViewHolder(View itemView) {
             super(itemView);
             textView = itemView.findViewById(R.id.text_view);
             imageView = itemView.findViewById(R.id.avt_user);
             textViewId = itemView.findViewById(R.id.txt_id);
+            favouriteView = itemView.findViewById(R.id.favourite);
 
         }
 

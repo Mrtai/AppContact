@@ -12,10 +12,12 @@ import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.e.mycontact.database.ContactDatabase;
@@ -24,7 +26,9 @@ import com.e.mycontact.provider.ContactProvider;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -42,6 +46,8 @@ public class EditUserActivity extends AppCompatActivity implements View.OnClickL
     CircleImageView imageView;
     int flag = 0;
     Bitmap bitmap = null;
+    ArrayAdapter<String> dataAdapter;
+    Spinner siSpinner ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,6 +77,25 @@ public class EditUserActivity extends AppCompatActivity implements View.OnClickL
                 save_data();
                 changeMain();
 
+            }
+        });
+        List<String> listGroup = new ArrayList<>();
+        listGroup.add("Không");
+        listGroup.add("Đồng nghiệp");
+        listGroup.add("Gia đình");
+        listGroup.add("Bạn bè");
+        dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listGroup);
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // attaching data adapter to spinner
+        siSpinner = findViewById(R.id.spinerGroup);
+
+        siSpinner.setAdapter(dataAdapter);
+        Button btn_home = findViewById(R.id.btn_home);
+        btn_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                changeMain();
             }
         });
 
@@ -105,6 +130,21 @@ public class EditUserActivity extends AppCompatActivity implements View.OnClickL
 
         EditText edtBorn = this.findViewById(R.id.txt_dateofborn);
         String dateBorn = edtBorn.getText().toString();
+
+        Integer c_group = 0;
+        String text = siSpinner.getSelectedItem().toString();
+        if(text.equals("Không")){
+            c_group = 0;
+        }
+        else if(text.equals("Đồng nghiệp")){
+            c_group = 1;
+        }
+        else if(text.equals("Gia đình")){
+            c_group = 2;
+        }
+        else{
+            c_group = 3;
+        }
         //get image
         if(bitmap != null){
             try {
@@ -116,18 +156,6 @@ public class EditUserActivity extends AppCompatActivity implements View.OnClickL
                 e.printStackTrace();
             }
         }
-//        if( uri != null){
-//            try {
-//                InputStream imageStream = getContentResolver().openInputStream(uri);
-//                Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
-//                byte[] bytes = getByteArray(selectedImage);
-//                contentValues.put(ContactDatabase.COL_IMAGE,bytes);
-//                uri = null;
-//            }
-//            catch (Exception e){
-//                e.printStackTrace();
-//            }
-//        }
         //end get image
         //add value
         contentValues.put(ContactDatabase.COL_NAME,name);
@@ -138,6 +166,8 @@ public class EditUserActivity extends AppCompatActivity implements View.OnClickL
         contentValues.put(ContactDatabase.COL_NOTE,note);
         contentValues.put(ContactDatabase.COL_SCHEDULE,schedule);
         contentValues.put(ContactDatabase.COL_DATE_OF_BORN,dateBorn);
+        contentValues.put(ContactDatabase.COL_FAVOURITE,0);
+        contentValues.put(ContactDatabase.COL_GROUP,c_group);
         Uri uri=null;
         try {
             uri = getContentResolver().insert(ContactProvider.CONTENT_URI,contentValues);

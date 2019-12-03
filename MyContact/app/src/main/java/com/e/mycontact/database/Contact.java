@@ -11,10 +11,12 @@ public class Contact {
     byte[] image;
     String schedule;
     String dateofborn;
+    Integer favourite;
+    Integer c_group;
 
 
     public Contact(int id, String name, String phone, String address, String email,
-                   String facebook, String note, byte[] image, String schedule, String dateofborn) {
+                   String facebook, String note, byte[] image, String schedule, String dateofborn,Integer favourite,Integer c_group) {
         this.id = id;
         this.name = name;
         this.phone = phone;
@@ -25,6 +27,8 @@ public class Contact {
         this.image = image;
         this.schedule = schedule;
         this.dateofborn = dateofborn;
+        this.favourite = favourite;
+        this.c_group = c_group;
     }
 
     public String getDateofborn() {
@@ -105,5 +109,21 @@ public class Contact {
 
     public void setImage(byte[] image) {
         this.image = image;
+    }
+
+    public Integer getFavourite() {
+        return favourite;
+    }
+
+    public void setFavourite(Integer favourite) {
+        this.favourite = favourite;
+    }
+
+    public Integer getC_group() {
+        return c_group;
+    }
+
+    public void setC_group(Integer c_group) {
+        this.c_group = c_group;
     }
 }
